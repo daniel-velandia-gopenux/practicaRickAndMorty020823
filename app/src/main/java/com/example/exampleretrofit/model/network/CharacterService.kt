@@ -10,9 +10,9 @@ class CharacterService {
 
     private val retrofit = RetrofitHelper.getRetrofit()
 
-    suspend fun getCharactersList(): CharacterListModel? {
+    suspend fun getCharactersList(page: Int = 1): CharacterListModel? {
         return withContext(Dispatchers.IO) {
-            val response = retrofit.create(CharacterApiClient::class.java).getCharactersList()
+            val response = retrofit.create(CharacterApiClient::class.java).getCharactersList(page)
             response.body()
         }
 

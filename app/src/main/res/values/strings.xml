@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">ExampleRetrofit</string>
-    <string name="episodes">episodes</string>
+    <string name="episodes">Episodes</string>
+    <string name="go_back">go back</string>
+    <string name="about_character">About character</string>
+    <string name="name">Name:</string>
+    <string name="gender">Gender:</string>
+    <string name="species">Species:</string>
+    <string name="origin">Origin:</string>
+    <string name="last_location">Last location:</string>
 </resources>

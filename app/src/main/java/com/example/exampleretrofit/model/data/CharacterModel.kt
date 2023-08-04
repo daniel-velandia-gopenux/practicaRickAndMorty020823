@@ -1,16 +1,16 @@
 package com.example.exampleretrofit.model.data
 
 data class CharacterModel(
-    val id: Int,
-    val name: String,
-    val status: String,
-    val species: String,
-    val type: String,
-    val gender: String,
-    val origin: OriginModel,
-    val location: LocationModel,
-    val image: String,
-    val episode: List<String>,
-    val url: String,
-    val created: String
+    var id: Int,
+    var name: String,
+    var status: String,
+    var species: String,
+    var type: String,
+    var gender: String,
+    var origin: OriginModel,
+    var location: LocationModel,
+    var image: String,
+    var episode: List<String>,
+    var url: String,
+    var created: String
 )
