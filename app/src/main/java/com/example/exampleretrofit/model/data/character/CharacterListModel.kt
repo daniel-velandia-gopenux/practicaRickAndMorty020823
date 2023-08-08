@@ -1,6 +1,4 @@
-package com.example.exampleretrofit.model.data
-
-import com.google.gson.annotations.SerializedName
+package com.example.exampleretrofit.model.data.character
 
 data class CharacterListModel(
     var info: InfoModel,

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exampleretrofit.databinding.ItemCharacterRecyclerViewBinding
-import com.example.exampleretrofit.model.data.CharacterModel
+import com.example.exampleretrofit.model.data.character.CharacterModel
 
 class CharacterAdapter(
     private val characters: List<CharacterModel>,

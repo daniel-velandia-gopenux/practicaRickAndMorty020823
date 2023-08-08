@@ -2,7 +2,7 @@ package com.example.exampleretrofit.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exampleretrofit.databinding.ItemCharacterRecyclerViewBinding
-import com.example.exampleretrofit.model.data.CharacterModel
+import com.example.exampleretrofit.model.data.character.CharacterModel
 import com.squareup.picasso.Picasso
 
 class CharacterHolder(

@@ -2,14 +2,12 @@ package com.example.exampleretrofit.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.example.exampleretrofit.R
 import com.example.exampleretrofit.databinding.ActivityDetailBinding
-import com.example.exampleretrofit.model.data.CharacterModel
-import com.example.exampleretrofit.model.network.CharacterService
+import com.example.exampleretrofit.ui.viewModel.DetailCharacterViewModel
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class DetailCharacterActivity : AppCompatActivity() {
 
@@ -18,51 +16,41 @@ class DetailCharacterActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityDetailBinding
-    private val api = CharacterService()
+    private val viewModel: DetailCharacterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initUi()
+        initUI()
     }
 
-    private fun initUi() {
+    private fun initUI() {
         val id: Int = intent.getIntExtra(EXTRA_ID, 0)
-
-        getCharacter(id)
+        viewModel.getCharacter(id)
+        render()
 
         binding.btnBack.setOnClickListener { goBack() }
     }
 
-    private fun getCharacter(id: Int) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val character = api.getCharacter(id)
-            character?.let {
+    private fun render() {
+        viewModel.character.observe(this, Observer {
+            Picasso.get().load(it.image).into(binding.ivPhoto)
 
-                runOnUiThread {
-                    render(it)
-                }
+            binding.tvNameCharacter.text = it.name
+            binding.tvGenderCharacter.text = it.gender
 
+            val img = when(it.status) {
+                "Alive" -> R.drawable.baseline_circle_green
+                "Dead" -> R.drawable.baseline_circle_red
+                else -> R.drawable.baseline_circle_gray
             }
-        }
-    }
+            binding.statusCharacter.setImageResource(img as Int)
 
-    private fun render(character: CharacterModel) {
-        Picasso.get().load(character.image).into(binding.ivPhoto)
-
-        binding.tvNameCharacter.text = character.name
-        binding.tvGenderCharacter.text = character.gender
-
-        if(character.status.equals("Alive")) {
-            binding.statusCharacter.setImageResource(R.drawable.baseline_circle_green)
-        } else {
-            binding.statusCharacter.setImageResource(R.drawable.baseline_circle_red)
-        }
-
-        binding.tvLocationCharacter.text = character.location.name
-        binding.tvOriginCharacter.text = character.origin.name
-        binding.tvSpeciesCharacter.text = character.species
+            binding.tvLocationCharacter.text = it.location.name
+            binding.tvOriginCharacter.text = it.origin.name
+            binding.tvSpeciesCharacter.text = it.species
+        })
     }
 
     private fun goBack() {

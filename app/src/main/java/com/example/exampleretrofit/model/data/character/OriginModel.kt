@@ -1,4 +1,4 @@
-package com.example.exampleretrofit.model.data
+package com.example.exampleretrofit.model.data.character
 
 data class OriginModel(
     var name: String,

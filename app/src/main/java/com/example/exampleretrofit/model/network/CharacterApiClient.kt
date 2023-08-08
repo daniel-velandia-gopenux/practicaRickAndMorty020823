@@ -1,7 +1,7 @@
 package com.example.exampleretrofit.model.network
 
-import com.example.exampleretrofit.model.data.CharacterListModel
-import com.example.exampleretrofit.model.data.CharacterModel
+import com.example.exampleretrofit.model.data.character.CharacterListModel
+import com.example.exampleretrofit.model.data.character.CharacterModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
